@@ -12,7 +12,7 @@
 ###  关于链接收集
 ###  关于英语
 ###  爬虫
-
+### 马太效应 https://wiki.mbalib.com/wiki/%E9%A9%AC%E5%A4%AA%E6%95%88%E5%BA%94
 
 
 
