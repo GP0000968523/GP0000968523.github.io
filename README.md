@@ -4,6 +4,7 @@
 ### odoo
 ### 静态网站生成
 ### 书单
+https://github.com/GP0000968523/GP0000968523.github.io/blob/main/books
 ### 关于kali
 ### 关于Ros
 ### 关于硬件
