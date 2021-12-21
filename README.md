@@ -19,5 +19,49 @@
 ###  爬虫
 ### 马太效应 https://wiki.mbalib.com/wiki/%E9%A9%AC%E5%A4%AA%E6%95%88%E5%BA%94
 
+### 分布式
+#### 分布式调度
+##### LTS 
+##### XXL-job
+##### E-JOB
 
+## 大数据处理过程组件
+### NIFI
+### kafka
+### Flink
+### Golang
+### CDC
+### airflow 及其分布式
+### redis 
+#### cloudra
+#### 数仓
+##### snowflake 弹性数仓
+##### GCP
+
+
+
+
+## 联邦学习
+
+## 云原生  CNCF
+### docker 
+### k8s
+
+
+springboot k8s
+1.Git ：checkout code
+2.Maven build code 
+3 static code Analysis
+4 docker:build image
+5 docker :publish Image to Nexus
+6 Approve Promotion
+7 git : checkout code
+
+
+## log4j2 升级
+
+
+
+
+https://www.oschina.net/project/top_cn_2020
 
