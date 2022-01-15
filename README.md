@@ -18,12 +18,6 @@
 ###  爬虫
 ### [马太效应](https://wiki.mbalib.com/wiki/%E9%A9%AC%E5%A4%AA%E6%95%88%E5%BA%94)
 
-### 分布式
-#### 分布式调度
-##### LTS 
-##### XXL-job
-##### E-JOB
-
 ### [CNCF](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/CNCF.md).
 ### [BigData](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/BigData.md).
 ### [ML]
