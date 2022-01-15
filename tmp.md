@@ -712,3 +712,116 @@ tcc
 
 
 
+GeoTrellis
+
+一格空间
+
+
+https://databricks.com/sparkaisummit/north-america/sessions?eventName=Summit%202019
+
+
+
+Java
+集合
+线程
+线程安全
+
+线程池
+数据结构
+
+
+
+双向链表
+
+
+
+hbase
+
+
+https://www.cs.usfca.edu/~galles/visualization/BTree.html
+
+
+树结构
+二叉树
+平衡二叉树
+B树是它是一种平衡的多叉树，称为B树（或B-树、B_树）。
+
+
+
+
+红黑树和二叉树
+
+红黑树是一种特化的AVL树（平衡二叉树），都是在进行插入和删除操作时通过特定操作保持二叉查找树的平衡，从而获得较高的查找性能。 [2]
+
+
+
+
+当在10亿数据进行不到30次比较就能查找到目标时，不禁感叹编程之魅力！人类之伟大呀！ —— 学红黑树有感。
+
+
+
+
+
+
+红黑树是一种含有红黑结点并能自平衡的二叉查找树。它必须满足下面性质：
+* 性质1：每个节点要么是黑色，要么是红色。
+* 性质2：根节点是黑色。
+* 性质3：每个叶子节点（NIL）是黑色。
+* 性质4：每个红色结点的两个子结点一定都是黑色。
+* 性质5：任意一结点到每个叶子结点的路径都包含数量相同的黑结点。
+
+
+
+
+
+作者：安卓大叔
+链接：https://www.jianshu.com/p/e136ec79235c
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+
+Istio
+
+
+1. 负责服务端技术选型和架构； 
+2. 负责产品功能模块的设计，开发和维护； 
+任职要求：
+1. 1~3年以上Golang开发经验； 
+2. 熟悉服务端接口开发，熟悉http，protobuf，grpc； 
+3. 熟悉goroutine，channel，sql，http等模块； 
+4. 掌握mysql，pgsql，redis基本使用； 
+5. 掌握linux，shell，docker优先； 
+6. 有个人技术博客优先。 
+
+
+1. 熟悉MySQL，熟悉数据库原理和常用性能优化技术，同时熟悉其他数据库（如Redis、MongoDB等）者优先； 4.熟悉微服务架构、gRPC、Istio、OpenTracing、Prometheus、Grafana、k8s中任意一项者优先；
+
+
+
+
+Golang, gRPC, go-micro            // 开发语言及其 RPC 框架
+Google Cloud, MongoDB            // 云平台与数据存储
+Docker, Kubernetes, Terrafrom      // 容器化与集群架构
+NATS, CircleCI     
+
+
+
+
+sip
+voip
+webrtc
+
+
+java 类的加载过程
+
+spring 的加载过程
+
+
+云平台管理
+
+
+
+
+
