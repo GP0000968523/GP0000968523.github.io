@@ -25,7 +25,10 @@
 ##### XXL-job
 ##### E-JOB
 
+[CNCF](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/CNCF.md).
+[BigData](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/CNCF.md).
 
+###
 springboot k8s
 1.Git ：checkout code
 2.Maven build code 
