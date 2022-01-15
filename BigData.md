@@ -4,6 +4,8 @@
 ### NIFI
 ### kafka
 ### Flink
+- [ffa2021]https://developer.aliyun.com/special/ffa2021/live#
+
 ### Golang
 ### CDC
 ### airflow 及其分布式
