@@ -1,7 +1,12 @@
 
 
 ## 大数据处理过程组件
+***
 ### NIFI
+[Apache NiFi安装及简单使用](https://blog.csdn.net/xc_zhou/article/details/103285088)
+
+***
+
 ### kafka
 ### Flink
 - [ffa2021](https://developer.aliyun.com/special/ffa2021/live#)
@@ -15,7 +20,10 @@
 ##### snowflake 弹性数仓
 ##### GCP
 
-
+***
+### 数据湖
+[浅谈数据湖](https://zhuanlan.zhihu.com/p/87795611)
+***
 
 
 ## 联邦学习
