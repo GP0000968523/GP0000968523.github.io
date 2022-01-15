@@ -1,10 +1,50 @@
-进程间通信
-网络通信。 
-共享内存。 
+***
+### docker
 kubeflow
 
 在run。k8s的地方run 机器学习
+docker-compose up -d --build
+docker 集群和教程
+「走进k8s」Docker三剑客之Docker Compose（七）
+Istio
+云平台管理
+***
 
+分布式
+***
+
+学会分布式好去做事
+
+分布式锁
+分布式锁
+
+
+锁
+
+
+分布式锁
+分布式总结
+1：注册中心
+2：配置中心
+3：网关
+4
+
+
+分布式锁
+锁
+
+***
+
+ZK
+
+***
+
+***
+
+
+进程间通信
+网络通信。 
+共享内存。 
 hive。
 
  hudi
@@ -13,7 +53,6 @@ hdfs 加hbase
 解编优执
 
 stm32
-docker-compose up -d --build
 
 tidb
 db2
@@ -46,7 +85,6 @@ kafka做一下
 
 http://c.biancheng.net/view/3174.html
 
-docker 集群和教程
 
 
 
@@ -64,7 +102,6 @@ docker 集群和教程
 五、odoo开发
 
 
-「走进k8s」Docker三剑客之Docker Compose（七）
 ￼
 IT人故事会
 关注
@@ -81,7 +118,7 @@ docker kafka 集群
 
 今天的任务是zk啊
 
-学会分布式好去做事
+
 
 学习ZK
 0：结构是树状的
@@ -112,12 +149,6 @@ leader那么同意commit,提交对应的之前让投票的那个事务
 分布式队列
 * 《ZooKeeper 分布式过程协同技术详解》
 * 《从Paxos到Zookeeper 分布式一致性原理与实践》
-
-
-可以用Curator轻易的实现一个分布式锁：
-
-
-
 数据发布/订阅
 负载均衡
 命名服务
@@ -126,6 +157,14 @@ leader那么同意commit,提交对应的之前让投票的那个事务
 Master选举
 分布式锁
 分布式队列
+
+
+
+可以用Curator轻易的实现一个分布式锁：
+
+
+
+
 
 
 
@@ -169,7 +208,8 @@ https://item.jd.com/12612884.html?cu=true&utm_source=kong&utm_medium=tuiguang&ut
 
 
 zk和其他中心
-分布式锁
+
+
 
 公平锁
 
@@ -237,7 +277,8 @@ file in fileNames.OrderBy(name= > name))
 
 ZK
 
-分布式锁
+
+
 
 dubbo 
 
@@ -289,11 +330,6 @@ dubbo 断路
 
 
 线程
-
-锁
-
-
-分布式锁
 
 
 vue
@@ -449,11 +485,6 @@ webrtc是一个方向
 负载
 
 
-分布式总结
-1：注册中心
-2：配置中心
-3：网关
-4
 
 最怕技术出身的人
 不以技术为屠龙刀
@@ -470,9 +501,6 @@ webrtc是一个方向
 
 zk
 dubbo源代码
-
-分布式锁
-锁
 
 
 idea 的好的插件
@@ -600,7 +628,6 @@ cdh    hadoop
 共享内存。 
 kubeflow
 
-在run。k8s的地方run 机器学习
 
 hive。
 
@@ -610,7 +637,6 @@ hdfs 加hbase
 解编优执
 
 stm32
-docker-compose up -d --build
 
 tidb
 db2
@@ -781,10 +807,6 @@ B树是它是一种平衡的多叉树，称为B树（或B-树、B_树）。
 
 
 
-
-Istio
-
-
 1. 负责服务端技术选型和架构； 
 2. 负责产品功能模块的设计，开发和维护； 
 任职要求：
@@ -817,9 +839,6 @@ webrtc
 java 类的加载过程
 
 spring 的加载过程
-
-
-云平台管理
 
 
 
