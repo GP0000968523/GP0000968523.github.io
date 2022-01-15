@@ -31,5 +31,5 @@
 ### 搜索
 Lucene（全文检索）进阶-第二篇
 
-[ElasticSearch 2 (10) - 在ElasticSearch之下（深入理解Shard和Lucene Index](ElasticSearch 2 (10) - 在ElasticSearch之下（深入理解Shard和Lucene Index）
+[ElasticSearch 2 (10) - 在ElasticSearch之下（深入理解Shard和Lucene Index](https://www.cnblogs.com/richaaaard/p/5227477.html）
 )
