@@ -45,3 +45,8 @@ https://www.oschina.net/project/top_cn_2020
 
 ### [tmp](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/tmp.md)
 
+
+Programmatic Ponderings | Insights on Software Development, Cloud, DevOps, Data Analytics, and More…
+[urlfor developer](https://programmaticponderings.com)
+
+
