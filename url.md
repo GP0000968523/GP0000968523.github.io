@@ -259,3 +259,6 @@ https://binghe.blog.csdn.net/article/details/105619102
 大数据交互平台Hue的优势_ChainingBlocks-CSDN博客_hue
 https://blog.csdn.net/liangyihuai/article/details/54137163
 
+gartner
+https://www.gartner.com/en
+
