@@ -48,6 +48,7 @@ https://www.oschina.net/project/top_cn_2020
 
 Programmatic Ponderings | Insights on Software Development, Cloud, DevOps, Data Analytics, and More…
 [urlfor developer](https://programmaticponderings.com)
+[gartner](https://www.gartner.com/en)
 
 
 [url](https://github.com/GP0000968523/GP0000968523.github.io/blob/main/url.md)
