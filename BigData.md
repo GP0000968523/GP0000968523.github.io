@@ -47,6 +47,9 @@ Lucene（全文检索）进阶-第二篇
 ***
 
 ### 分布式
+Ceph，GlusterFS,Sheepdog,Lustre,Swift,Cinder,TFS,HDFS,MooseFS,FastDFS,MogileFS等
+
+
 #### 分布式调度
 ##### LTS 
 ##### XXL-job
