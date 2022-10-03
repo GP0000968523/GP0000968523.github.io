@@ -66,3 +66,12 @@ splunk
 
 #### pubsub
 
+server
+DB
+cache
+squence
+CDN
+loadbalance
+
+
+
