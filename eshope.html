@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>国内电商平台OpenAPI导航大全</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --border-color: #e2e8f0;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), #1d4ed8);
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 搜索与筛选区域 */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .search-box {
+            flex-grow: 1;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1.2rem 0.9rem 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-color);
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        
+        .filter-tab {
+            padding: 0.6rem 1.2rem;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .filter-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .filter-tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .filter-tab.type-all { background-color: #f1f5f9; }
+        .filter-tab.type-comprehensive { background-color: #e0f2fe; }
+        .filter-tab.type-content { background-color: #fce7f3; }
+        .filter-tab.type-vertical { background-color: #f0fdf4; }
+        .filter-tab.type-crossborder { background-color: #fef7cd; }
+        .filter-tab.type-service { background-color: #f1f5f9; }
+        
+        /* 平台卡片区域 */
+        .platforms-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .platform-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .platform-card.comprehensive { border-top-color: #3b82f6; }
+        .platform-card.content { border-top-color: #ec4899; }
+        .platform-card.vertical { border-top-color: #10b981; }
+        .platform-card.crossborder { border-top-color: #f59e0b; }
+        .platform-card.service { border-top-color: #8b5cf6; }
+        
+        .platform-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .platform-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .platform-type {
+            font-size: 0.8rem;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .platform-description {
+            color: var(--gray-color);
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+        
+        .platform-links {
+            margin-top: auto;
+        }
+        
+        .api-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: all 0.2s;
+        }
+        
+        .api-link:hover {
+            color: #1d4ed8;
+            gap: 10px;
+        }
+        
+        .api-link i {
+            font-size: 0.9rem;
+        }
+        
+        .no-api {
+            color: var(--gray-color);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+        
+        .platform-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        
+        .status-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-icon.available { background-color: var(--success-color); }
+        .status-icon.partial { background-color: var(--warning-color); }
+        .status-icon.unknown { background-color: var(--gray-color); }
+        .status-icon.none { background-color: var(--danger-color); }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .usage-tips {
+            background-color: #f0f9ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .usage-tips h3 {
+            color: var(--dark-color);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .platforms-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .logo h1 {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .platforms-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h1>国内电商平台OpenAPI导航</h1>
+                </div>
+                <p class="tagline">一站式获取国内主流电商平台开放接口官方入口，涵盖综合电商、垂直领域、跨境电商、内容电商及生活服务等各类平台。</p>
+                
+                <div class="controls">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="搜索平台名称或类型...">
+                    </div>
+                    
+                    <div class="filter-tabs" id="filterTabs">
+                        <div class="filter-tab type-all active" data-filter="all">全部平台</div>
+                        <div class="filter-tab type-comprehensive" data-filter="comprehensive">综合电商</div>
+                        <div class="filter-tab type-content" data-filter="content">内容/社交电商</div>
+                        <div class="filter-tab type-vertical" data-filter="vertical">垂直/特卖电商</div>
+                        <div class="filter-tab type-crossborder" data-filter="crossborder">跨境电商</div>
+                        <div class="filter-tab type-service" data-filter="service">生活服务电商</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="usage-tips">
+            <h3><i class="fas fa-lightbulb"></i> 使用提示</h3>
+            <p>1. 大部分平台OpenAPI接入需要<strong>企业资质认证</strong>，请提前准备营业执照等信息。</p>
+            <p>2. 平台通常提供<strong>沙箱环境</strong>供开发测试，建议先在此环境调试接口。</p>
+            <p>3. 各平台对API调用频率(QPS)都有严格限制，开发时请注意优化调用策略。</p>
+            <p>4. 对于未提供OpenAPI的平台，可通过官网"商务合作"或"商家入驻"渠道咨询系统对接可能性。</p>
+        </div>
+        
+        <div class="platforms-container" id="platformsContainer">
+            <!-- 综合电商平台 -->
+            <div class="platform-card comprehensive" data-type="comprehensive" data-name="淘宝/天猫">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">淘宝/天猫</div>
+                        <div class="platform-type">综合电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">国内最大的C2C与B2C电商平台，提供商品、交易、物流、营销等全链路API，采用独特的Schema商品管理体系。</p>
+                <div class="platform-links">
+                    <a href="https://open.taobao.com/doc.htm" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 淘宝开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>OpenAPI完整，文档详细</span>
+                </div>
+            </div>
+            
+            <div class="platform-card comprehensive" data-type="comprehensive" data-name="京东">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">京东</div>
+                        <div class="platform-type">综合电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">自营为主的B2C电商平台，提供商品、订单、物流、促销等完整接口，供应链协同能力突出。</p>
+                <div class="platform-links">
+                    <a href="https://open.jd.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 京东开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，支持丰富</span>
+                </div>
+            </div>
+            
+            <div class="platform-card comprehensive" data-type="comprehensive" data-name="拼多多">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">拼多多</div>
+                        <div class="platform-type">综合电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">社交电商平台，提供商品、订单、售后、物流等接口，侧重拼团等社交玩法，接口以"pdd."前缀命名。</p>
+                <div class="platform-links">
+                    <a href="https://open.pinduoduo.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 拼多多开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>OpenAPI完整，侧重社交电商场景</span>
+                </div>
+            </div>
+            
+            <div class="platform-card comprehensive" data-type="comprehensive" data-name="1688阿里巴巴批发">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">1688（阿里巴巴批发）</div>
+                        <div class="platform-type">综合电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">国内最大的B2B批发采购平台，提供会员、商品、订单、跨境、物流等接口，主要面向批发商家。</p>
+                <div class="platform-links">
+                    <a href="https://open.1688.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 1688开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，B2B场景完善</span>
+                </div>
+            </div>
+            
+            <!-- 内容/社交电商 -->
+            <div class="platform-card content" data-type="content" data-name="抖音电商">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">抖音电商</div>
+                        <div class="platform-type">内容/社交电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">短视频内容电商平台，提供商品、订单、物流、售后、内容管理等接口，与短视频、直播强关联。</p>
+                <div class="platform-links">
+                    <a href="https://developer.open-douyin.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 抖音开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>需查找"电商开放平台"相关入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card content" data-type="content" data-name="快手电商">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">快手电商</div>
+                        <div class="platform-type">内容/社交电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">直播电商平台，提供商品、订单、物流、售后、分销等接口，侧重直播带货场景。</p>
+                <div class="platform-links">
+                    <a href="https://open.kwaixiaodian.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 快手电商开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card content" data-type="content" data-name="小红书">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">小红书</div>
+                        <div class="platform-type">内容/社交电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">生活方式分享与电商平台，提供商品、笔记、营销等接口，内容与电商结合紧密。</p>
+                <div class="platform-links">
+                    <span class="no-api">需访问"小红书开放平台"官网查找</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <!-- 垂直/特卖电商 -->
+            <div class="platform-card vertical" data-type="vertical" data-name="唯品会">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">唯品会</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">品牌特卖电商平台，提供商品、订单、物流、会员等接口，以品牌折扣为主。</p>
+                <div class="platform-links">
+                    <span class="no-api">需搜索"唯品会开放平台"或"唯品会开发者中心"</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="得物(毒)">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">得物(毒)</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">潮流商品鉴定交易平台，提供商品、查验鉴别、订单、物流等特色接口。</p>
+                <div class="platform-links">
+                    <span class="no-api">需搜索"得物开放平台"查找</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="孔夫子旧书网">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">孔夫子旧书网</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">专业的二手书交易平台，主要提供古旧书、二手书交易服务。</p>
+                <div class="platform-links">
+                    <a href="https://www.kongfz.com" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 孔夫子旧书网官网
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon none"></span>
+                    <span>未对外开放OpenAPI，建议联系商务合作</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="闲鱼">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">闲鱼</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">阿里巴巴旗下二手商品交易平台，提供二手商品交易服务。</p>
+                <div class="platform-links">
+                    <span class="no-api">需在"阿里开放平台"内查找闲鱼相关接口</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>API包含在阿里生态内，无独立平台</span>
+                </div>
+            </div>
+            
+            <!-- 跨境电商 -->
+            <div class="platform-card crossborder" data-type="crossborder" data-name="速卖通(AliExpress)">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">速卖通(AliExpress)</div>
+                        <div class="platform-type">跨境电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">阿里巴巴旗下跨境B2C电商平台，提供商品、交易、物流、数据等接口，面向全球市场。</p>
+                <div class="platform-links">
+                    <a href="https://develop.aliexpress.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 速卖通开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，支持多语言</span>
+                </div>
+            </div>
+            
+            <div class="platform-card crossborder" data-type="crossborder" data-name="Shopee(虾皮)">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">Shopee(虾皮)</div>
+                        <div class="platform-type">跨境电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">东南亚领先的电商平台，提供店铺、商品、订单、物流等接口，主要面向东南亚及台湾市场。</p>
+                <div class="platform-links">
+                    <a href="https://open.shopee.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> Shopee开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，文档完善</span>
+                </div>
+            </div>
+            
+            <div class="platform-card crossborder" data-type="crossborder" data-name="SHEIN">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">SHEIN</div>
+                        <div class="platform-type">跨境电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">国际快时尚跨境电商平台，主要面向欧美市场，提供时尚服装、饰品等商品。</p>
+                <div class="platform-links">
+                    <span class="no-api">需访问"SHEIN开放平台"或"合作伙伴门户"查找</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <!-- 生活服务电商 -->
+            <div class="platform-card service" data-type="service" data-name="美团">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">美团</div>
+                        <div class="platform-type">生活服务电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">生活服务电商平台，提供到店、外卖、酒店旅游、配送等接口，涵盖本地生活全场景。</p>
+                <div class="platform-links">
+                    <a href="https://open.meituan.com/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 美团开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，覆盖生活服务全场景</span>
+                </div>
+            </div>
+            
+            <div class="platform-card service" data-type="service" data-name="饿了么">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">饿了么</div>
+                        <div class="platform-type">生活服务电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">阿里巴巴旗下本地生活服务平台，提供外卖、商品、订单、配送等接口。</p>
+                <div class="platform-links">
+                    <a href="https://open.alipay.com/platform/home.htm" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 阿里本地生活开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI入口</span>
+                </div>
+            </div>
+            
+            <!-- 其他平台 -->
+            <div class="platform-card vertical" data-type="vertical" data-name="华为商城(VMALL)">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">华为商城(VMALL)</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">华为官方电商平台，主要销售华为品牌产品及生态链产品。</p>
+                <div class="platform-links">
+                    <span class="no-api">未找到对外OpenAPI入口</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon none"></span>
+                    <span>可能仅内部或对深度合作伙伴开放</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="小米有品">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">小米有品</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">小米旗下精品生活电商平台，提供小米生态链及第三方优质产品。</p>
+                <div class="platform-links">
+                    <span class="no-api">需搜索"小米开放平台"或"小米有品开放平台"</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="苏宁易购">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">苏宁易购</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">家电3C为主的综合电商平台，线上线下一体化，提供商品、订单、库存、物流等接口。</p>
+                <div class="platform-links">
+                    <span class="no-api">需搜索"苏宁开放平台"或"苏宁云台开发者中心"</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon partial"></span>
+                    <span>需自行查找开放平台入口</span>
+                </div>
+            </div>
+            
+            <div class="platform-card vertical" data-type="vertical" data-name="网易考拉海购">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">网易考拉海购</div>
+                        <div class="platform-type">垂直/特卖电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">网易旗下跨境进口电商平台，主营进口商品，已被阿里收购。</p>
+                <div class="platform-links">
+                    <span class="no-api">未找到对外OpenAPI入口</span>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon unknown"></span>
+                    <span>可能未对外开放或已整合到阿里体系</span>
+                </div>
+            </div>
+            
+            <div class="platform-card service" data-type="service" data-name="翼支付">
+                <div class="platform-header">
+                    <div>
+                        <div class="platform-name">翼支付</div>
+                        <div class="platform-type">生活服务电商</div>
+                    </div>
+                </div>
+                <p class="platform-description">中国电信旗下的移动支付与电商平台，提供支付、积分、会员、电商等接口。</p>
+                <div class="platform-links">
+                    <a href="https://open.bestpay.com.cn/" target="_blank" class="api-link">
+                        <i class="fas fa-external-link-alt"></i> 翼支付开放平台
+                    </a>
+                </div>
+                <div class="platform-status">
+                    <span class="status-icon available"></span>
+                    <span>官方OpenAPI，属积分电商场景</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>&copy; 2023 电商平台OpenAPI导航 | 本页面仅为技术导航，所链接资源版权归各平台所有</p>
+                    <p>数据更新至2023年11月 | 平台政策可能变化，请以各平台官方最新文档为准</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const platformCards = document.querySelectorAll('.platform-card');
+            
+            // 搜索功能
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterPlatforms(searchTerm);
+            });
+            
+            // 筛选标签功能
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有active类
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // 给当前点击的标签添加active类
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterPlatforms(searchInput.value.toLowerCase().trim(), filter);
+                });
+            });
+            
+            function filterPlatforms(searchTerm = '', filterType = 'all') {
+                platformCards.forEach(card => {
+                    const cardName = card.getAttribute('data-name').toLowerCase();
+                    const cardType = card.getAttribute('data-type');
+                    
+                    let matchesSearch = true;
+                    let matchesFilter = true;
+                    
+                    // 检查是否匹配搜索词
+                    if (searchTerm) {
+                        matchesSearch = cardName.includes(searchTerm);
+                    }
+                    
+                    // 检查是否匹配筛选类型
+                    if (filterType !== 'all') {
+                        matchesFilter = cardType === filterType;
+                    }
+                    
+                    // 显示或隐藏卡片
+                    if (matchesSearch && matchesFilter) {
+                        card.style.display = 'flex';
+                        // 添加淡入动画
+                        card.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // 如果没有匹配结果，显示提示
+                const visibleCards = document.querySelectorAll('.platform-card[style*="display: flex"]');
+                if (visibleCards.length === 0) {
+                    // 可以在这里添加"无结果"提示
+                }
+            }
+            
+            // 为所有外部链接添加target="_blank"
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+            
+            // 添加淡入动画
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
