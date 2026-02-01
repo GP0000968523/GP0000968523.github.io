@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coder Helper Pro | AI/大模型导航</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --ai-color: #8b5cf6;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gray-color: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, var(--ai-color), #7c3aed);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+        
+        .ai-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        /* AI专题横幅 */
+        .ai-banner {
+            background: linear-gradient(90deg, #f0f9ff, #e0f2fe);
+            border-left: 5px solid var(--ai-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ai-banner-content h3 {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ai-banner-content p {
+            color: var(--gray-color);
+            max-width: 800px;
+        }
+        
+        .ai-stats {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--ai-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray-color);
+        }
+        
+        /* 主要内容区域 */
+        main {
+            padding: 2.5rem 0;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .hero h2 {
+            color: var(--dark-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .philosophy {
+            background-color: #faf5ff;
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--ai-color);
+            margin-top: 1.5rem;
+            font-style: italic;
+        }
+        
+        /* 导航分类 */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--ai-color);
+        }
+        
+        .category-card.ai-card {
+            border-top-color: var(--ai-color);
+        }
+        
+        .category-card.other-card {
+            border-top-color: var(--primary-color);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .category-card h3 {
+            color: var(--dark-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-card.ai-card h3 i {
+            color: var(--ai-color);
+        }
+        
+        .category-card.other-card h3 i {
+            color: var(--primary-color);
+        }
+        
+        .links-list {
+            list-style: none;
+        }
+        
+        .links-list li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+        
+        .links-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .links-list a {
+            color: var(--gray-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s;
+            padding: 4px 0;
+        }
+        
+        .links-list a:hover {
+            color: var(--ai-color);
+            padding-left: 5px;
+        }
+        
+        .links-list a .link-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .links-list a i {
+            font-size: 0.8rem;
+        }
+        
+        .link-type {
+            font-size: 0.7rem;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+        
+        .link-type.platform {
+            background-color: #f0f9ff;
+            color: var(--ai-color);
+        }
+        
+        .link-type.tool {
+            background-color: #f0fdf4;
+            color: var(--success-color);
+        }
+        
+        .link-type.community {
+            background-color: #fef7cd;
+            color: #b45309;
+        }
+        
+        .link-type.resource {
+            background-color: #f1f5f9;
+            color: var(--gray-color);
+        }
+        
+        /* 关于区域 */
+        .about-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            margin-top: 2rem;
+        }
+        
+        .about-section h2 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .about-text h3 {
+            color: var(--dark-color);
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        .about-text h3:first-child {
+            margin-top: 0;
+        }
+        
+        .contact-info {
+            background-color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .contact-info h3 {
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--ai-color);
+            width: 20px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--ai-color);
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .categories {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .ai-banner {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .ai-stats {
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 1.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .ai-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* 添加一些动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .category-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* 搜索框样式 */
+        .search-box {
+            margin: 1.5rem 0 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1.2rem 0.9rem 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--ai-color);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-color);
+        }
+        
+        /* 分类筛选器 */
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-tab:hover {
+            border-color: var(--ai-color);
+            color: var(--ai-color);
+        }
+        
+        .filter-tab.active {
+            background-color: var(--ai-color);
+            color: white;
+            border-color: var(--ai-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h1>Coder Helper Pro <span class="ai-badge">AI增强版</span></h1>
+                        <div class="tagline">一站式AI/大模型开发资源导航</div>
+                    </div>
+                </div>
+                <div class="site-stats">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>本站已运行 <strong>3361</strong> 天</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <div class="ai-banner">
+            <div class="ai-banner-content">
+                <h3>🤖 AI/大模型资源大全</h3>
+                <p>收录全球最新、最实用的AI开发资源，涵盖大模型平台、开发工具、学习社区、应用案例等，助力开发者快速掌握AI技术。</p>
+            </div>
+            <div class="ai-stats">
+                <div class="stat-item">
+                    <div class="stat-value">80+</div>
+                    <div class="stat-label">AI资源</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">12</div>
+                    <div class="stat-label">分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">免费使用</div>
+                </div>
+            </div>
+        </div>
+        
+        <section class="hero">
+            <h2>AI/大模型开发导航</h2>
+            <p>专注AI与大模型技术，提供从基础学习到开发部署的全方位资源，帮助开发者高效构建智能应用。</p>
+            
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="searchInput" placeholder="搜索AI资源、工具、平台或关键字...">
+            </div>
+            
+            <div class="filter-tabs" id="filterTabs">
+                <div class="filter-tab active" data-filter="all">全部资源</div>
+                <div class="filter-tab" data-filter="ai">AI/大模型</div>
+                <div class="filter-tab" data-filter="other">其他分类</div>
+                <div class="filter-tab" data-filter="platform">平台</div>
+                <div class="filter-tab" data-filter="tool">开发工具</div>
+                <div class="filter-tab" data-filter="community">社区</div>
+            </div>
+            
+            <div class="philosophy">
+                "1>N，最重要的事情只有一件，让这个网站成为AI开发者的得力助手"。<br>
+                停止无意义的重复劳动，拥抱AI技术，专注于创造价值。
+            </div>
+        </section>
+        
+        <section class="categories" id="categoriesContainer">
+            <!-- AI/大模型平台 -->
+            <div class="category-card ai-card" data-category="ai platform">
+                <h3><i class="fas fa-cloud"></i> 国际大模型平台</h3>
+                <ul class="links-list">
+                    <li><a href="https://openai.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> OpenAI (GPT系列)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://claude.ai/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Claude (Anthropic)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://deepmind.google/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Google DeepMind
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://ai.meta.com/llama/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Meta Llama
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://huggingface.co/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Hugging Face
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://www.mistral.ai/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Mistral AI
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- 国内大模型平台 -->
+            <div class="category-card ai-card" data-category="ai platform">
+                <h3><i class="fas fa-home"></i> 国内大模型平台</h3>
+                <ul class="links-list">
+                    <li><a href="https://yiyan.baidu.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 文心一言 (百度)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://tongyi.aliyun.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 通义千问 (阿里)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://www.deepseek.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> DeepSeek (深度求索)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://chatglm.cn/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 智谱AI (ChatGLM)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://kimi.moonshot.cn/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 月之暗面 (Kimi)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://xinghuo.xfyun.cn/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 讯飞星火
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- AI开发框架与工具 -->
+            <div class="category-card ai-card" data-category="ai tool">
+                <h3><i class="fas fa-tools"></i> AI开发框架与工具</h3>
+                <ul class="links-list">
+                    <li><a href="https://www.langchain.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> LangChain
+                        </div>
+                        <span class="link-type tool">框架</span>
+                    </a></li>
+                    <li><a href="https://www.llamaindex.ai/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> LlamaIndex
+                        </div>
+                        <span class="link-type tool">框架</span>
+                    </a></li>
+                    <li><a href="https://pytorch.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> PyTorch
+                        </div>
+                        <span class="link-type tool">框架</span>
+                    </a></li>
+                    <li><a href="https://www.tensorflow.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> TensorFlow
+                        </div>
+                        <span class="link-type tool">框架</span>
+                    </a></li>
+                    <li><a href="https://github.com/microsoft/semantic-kernel" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Semantic Kernel
+                        </div>
+                        <span class="link-type tool">框架</span>
+                    </a></li>
+                    <li><a href="https://huggingface.co/docs/transformers" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Transformers库
+                        </div>
+                        <span class="link-type tool">库</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- AI学习与社区 -->
+            <div class="category-card ai-card" data-category="ai community">
+                <h3><i class="fas fa-users"></i> AI学习与社区</h3>
+                <ul class="links-list">
+                    <li><a href="https://github.com/topics/llm" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> GitHub LLM项目
+                        </div>
+                        <span class="link-type community">社区</span>
+                    </a></li>
+                    <li><a href="https://www.modelscope.cn/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> 魔搭社区 (ModelScope)
+                        </div>
+                        <span class="link-type community">社区</span>
+                    </a></li>
+                    <li><a href="https://www.kaggle.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Kaggle
+                        </div>
+                        <span class="link-type community">社区</span>
+                    </a></li>
+                    <li><a href="https://paperswithcode.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Papers With Code
+                        </div>
+                        <span class="link-type resource">资源</span>
+                    </a></li>
+                    <li><a href="https://www.reddit.com/r/MachineLearning/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Reddit机器学习社区
+                        </div>
+                        <span class="link-type community">社区</span>
+                    </a></li>
+                    <li><a href="https://course.fast.ai/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Fast.ai课程
+                        </div>
+                        <span class="link-type resource">学习</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- AI应用开发 -->
+            <div class="category-card ai-card" data-category="ai tool">
+                <h3><i class="fas fa-code"></i> AI应用开发</h3>
+                <ul class="links-list">
+                    <li><a href="https://platform.openai.com/docs/api-reference" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> OpenAI API文档
+                        </div>
+                        <span class="link-type resource">文档</span>
+                    </a></li>
+                    <li><a href="https://colab.research.google.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Google Colab
+                        </div>
+                        <span class="link-type tool">环境</span>
+                    </a></li>
+                    <li><a href="https://replicate.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Replicate (模型部署)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://www.anthropic.com/api" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Anthropic API
+                        </div>
+                        <span class="link-type resource">API</span>
+                    </a></li>
+                    <li><a href="https://github.com/openai/openai-cookbook" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> OpenAI Cookbook
+                        </div>
+                        <span class="link-type resource">示例</span>
+                    </a></li>
+                    <li><a href="https://gradio.app/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Gradio (UI构建)
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- 多模态AI -->
+            <div class="category-card ai-card" data-category="ai tool">
+                <h3><i class="fas fa-eye"></i> 多模态AI</h3>
+                <ul class="links-list">
+                    <li><a href="https://openai.com/dall-e-2" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> DALL·E 2 (图像生成)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://openai.com/sora" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Sora (视频生成)
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://midjourney.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Midjourney
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://stability.ai/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Stability AI
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://www.runwayml.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Runway ML
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://github.com/lllyasviel/ControlNet" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> ControlNet
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- 大数据 -->
+            <div class="category-card other-card" data-category="other">
+                <h3><i class="fas fa-database"></i> 大数据</h3>
+                <ul class="links-list">
+                    <li><a href="https://hadoop.apache.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Apache Hadoop
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://spark.apache.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Apache Spark
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://kafka.apache.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Apache Kafka
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                    <li><a href="https://flink.apache.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Apache Flink
+                        </div>
+                        <span class="link-type platform">平台</span>
+                    </a></li>
+                    <li><a href="https://www.elastic.co/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Elasticsearch
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                </ul>
+            </div>
+            
+            <!-- 网络安全 -->
+            <div class="category-card other-card" data-category="other">
+                <h3><i class="fas fa-shield-alt"></i> 网络安全</h3>
+                <ul class="links-list">
+                    <li><a href="https://www.owasp.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> OWASP
+                        </div>
+                        <span class="link-type community">社区</span>
+                    </a></li>
+                    <li><a href="https://portswigger.net/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> PortSwigger (Burp Suite)
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                    <li><a href="https://www.kali.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Kali Linux
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                    <li><a href="https://www.metasploit.com/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Metasploit
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                    <li><a href="https://nmap.org/" target="_blank">
+                        <div class="link-text">
+                            <i class="fas fa-external-link-alt"></i> Nmap
+                        </div>
+                        <span class="link-type tool">工具</span>
+                    </a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="about-section">
+            <h2><i class="fas fa-info-circle"></i> 关于AI导航</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>AI时代开发者的新助手</h3>
+                    <p>在AI技术飞速发展的今天，我们重新设计了这个导航网站，专注于为AI开发者和大模型应用者提供最全面、最实用的资源集合。从基础学习到生产部署，从理论研究到应用实践，我们致力于成为AI开发者的得力助手。</p>
+                    
+                    <h3>我们的目标</h3>
+                    <p>"1>N，最重要的事情只有一件，让这个网站成为AI开发者的得力助手"。在AI技术快速迭代的背景下，我们持续跟踪最新技术动态，筛选高质量资源，帮助开发者节省时间，专注于创造价值。</p>
+                    
+                    <h3>资源特色</h3>
+                    <p>• <strong>全面覆盖</strong>: 涵盖国际和国内主流大模型平台<br>
+                       • <strong>分类清晰</strong>: 按平台、工具、社区、学习资源等多维度分类<br>
+                       • <strong>持续更新</strong>: 紧跟AI技术发展，定期更新资源库<br>
+                       • <strong>完全免费</strong>: 永远免费为开发者社区提供服务<br>
+                       • <strong>响应式设计</strong>: 在手机、平板和电脑上都能完美呈现</p>
+                </div>
+                
+                <div class="contact-info">
+                    <h3><i class="fas fa-address-card"></i> 联系与合作</h3>
+                    <p><i class="fas fa-user-tie"></i> 商务合作: QQ 2926735852</p>
+                    <p><i class="fas fa-envelope"></i> 邮箱: contact@coderhelper.pro</p>
+                    <p><i class="fas fa-calendar-alt"></i> 本站已运行: 3361 天</p>
+                    <p><i class="fas fa-code-branch"></i> AI版本: v3.0.0</p>
+                    <p><i class="fas fa-heart"></i> 感谢AI开源社区!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">
+                    <p>&copy; 2025 Coder Helper Pro - AI/大模型导航</p>
+                    <p>本网站仅为技术导航，所链接资源版权归原作者所有</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="知乎"><i class="fab fa-zhihu"></i></a>
+                    <a href="#" title="微信公众号"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            const categoryCards = document.querySelectorAll('.category-card');
+            
+            // 搜索功能
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                filterCards(searchTerm);
+            });
+            
+            // 筛选标签功能
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有active类
+                    filterTabs.forEach(t => t.classList.remove('active'));
+                    // 给当前点击的标签添加active类
+                    this.classList.add('active');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    filterCardsByType(filter);
+                });
+            });
+            
+            function filterCards(searchTerm = '') {
+                const activeFilter = document.querySelector('.filter-tab.active').getAttribute('data-filter');
+                
+                categoryCards.forEach(card => {
+                    const cardTitle = card.querySelector('h3').textContent.toLowerCase();
+                    const cardLinks = card.querySelectorAll('a');
+                    const cardCategory = card.getAttribute('data-category');
+                    let hasMatch = false;
+                    
+                    // 检查标题是否匹配搜索词
+                    if (cardTitle.includes(searchTerm)) {
+                        hasMatch = true;
+                    }
+                    
+                    // 检查链接文本是否匹配搜索词
+                    cardLinks.forEach(link => {
+                        const linkText = link.textContent.toLowerCase();
+                        if (linkText.includes(searchTerm)) {
+                            hasMatch = true;
+                            // 高亮匹配的文本
+                            if (searchTerm) {
+                                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                                const linkTextElement = link.querySelector('.link-text');
+                                if (linkTextElement) {
+                                    linkTextElement.innerHTML = linkTextElement.innerHTML.replace(regex, '<span style="background-color: #ffeb3b; padding: 2px 4px; border-radius: 3px;">$1</span>');
+                                }
+                            }
+                        } else if (searchTerm) {
+                            // 恢复原始文本（移除之前的高亮）
+                            const originalText = link.querySelector('.link-text').textContent;
+                            link.querySelector('.link-text').innerHTML = `<i class="fas fa-external-link-alt"></i> ${originalText}`;
+                        }
+                    });
+                    
+                    // 根据筛选器和搜索词决定是否显示卡片
+                    let shouldShow = false;
+                    
+                    if (activeFilter === 'all') {
+                        shouldShow = hasMatch || searchTerm === '';
+                    } else if (activeFilter === 'ai') {
+                        shouldShow = (hasMatch || searchTerm === '') && card.classList.contains('ai-card');
+                    } else if (activeFilter === 'other') {
+                        shouldShow = (hasMatch || searchTerm === '') && card.classList.contains('other-card');
+                    } else if (activeFilter === 'platform') {
+                        shouldShow = (hasMatch || searchTerm === '') && cardCategory.includes('platform');
+                    } else if (activeFilter === 'tool') {
+                        shouldShow = (hasMatch || searchTerm === '') && cardCategory.includes('tool');
+                    } else if (activeFilter === 'community') {
+                        shouldShow = (hasMatch || searchTerm === '') && cardCategory.includes('community');
+                    }
+                    
+                    // 显示或隐藏卡片
+                    if (shouldShow) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease forwards';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            function filterCardsByType(filterType) {
+                filterCards(searchInput.value.toLowerCase().trim());
+            }
+            
+            // 为所有外部链接添加图标和提示
+            document.querySelectorAll('a[href^="http"]').forEach(link => {
+                if (!link.querySelector('i.fa-external-link-alt')) {
+                    const linkText = link.querySelector('.link-text');
+                    if (linkText && !linkText.innerHTML.includes('fa-external-link-alt')) {
+                        linkText.innerHTML = `<i class="fas fa-external-link-alt"></i> ${linkText.textContent}`;
+                    }
+                }
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
+            
+            // 更新运行天数
+            function updateDaysRunning() {
+                const startDate = new Date('2016-05-01');
+                const currentDate = new Date();
+                const diffTime = Math.abs(currentDate - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                const daysElements = document.querySelectorAll('.site-stats strong');
+                daysElements.forEach(el => {
+                    el.textContent = diffDays;
+                });
+                
+                const contactInfoDays = document.querySelector('.contact-info p:nth-child(3)');
+                if (contactInfoDays) {
+                    contactInfoDays.innerHTML = `<i class="fas fa-calendar-alt"></i> 本站已运行: <strong>${diffDays}</strong> 天`;
+                }
+            }
+            
+            updateDaysRunning();
+            
+            // 添加AI资源统计
+            function updateAIStats() {
+                const aiCards = document.querySelectorAll('.ai-card');
+                const aiLinks = document.querySelectorAll('.ai-card .links-list a');
+                
+                document.querySelector('.stat-value').textContent = aiLinks.length;
+            }
+            
+            updateAIStats();
+        });
+    </script>
+</body>
+</html>
